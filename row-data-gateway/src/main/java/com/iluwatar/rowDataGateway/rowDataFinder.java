@@ -1,4 +1,4 @@
 package com.iluwatar.rowDataGateway;
 
-public class App {
+public class rowDataFinder {
 }
