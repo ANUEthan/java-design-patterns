@@ -5,7 +5,6 @@ import java.sql.*;
 public class rowDataGateway extends rowData {
     private String name;
     private double value;
-    private int numberOfDependents;
 
     public String getName() {
         return name;
@@ -21,14 +20,6 @@ public class rowDataGateway extends rowData {
 
     public void setValue(double value) {
         this.value = value;
-    }
-
-    public int getNumDependents() {
-        return numberOfDependents;
-    }
-
-    public void setNumDependents(int numberOfDependents) {
-        this.numberOfDependents = numberOfDependents;
     }
 
     public void Insert() {
