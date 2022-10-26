@@ -1,5 +1,7 @@
 package com.iluwatar.rowDataGateway;
 
+import java.sql.*;
+
 public class rowDataGateway extends rowData {
     private String name;
     private double value;
@@ -27,5 +29,16 @@ public class rowDataGateway extends rowData {
 
     public void setNumDependents(int numberOfDependents) {
         this.numberOfDependents = numberOfDependents;
+    }
+
+    public void Insert() {
+    }
+
+    public void Update(){
+
+    }
+
+    public Boolean Delete() {
+        return false;
     }
 }
