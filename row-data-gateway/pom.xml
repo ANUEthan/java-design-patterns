@@ -51,7 +51,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.rowDataGateway.App</mainClass>
+                                    <mainClass>com.iluwatar.rowdatagateway.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

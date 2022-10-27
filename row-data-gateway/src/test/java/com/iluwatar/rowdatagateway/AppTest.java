@@ -1,4 +1,4 @@
-package com.iluwatar.rowDataGateway;
+package com.iluwatar.rowdatagateway;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
