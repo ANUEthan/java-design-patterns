@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * This acts as a 'Gateway' to a single record in a database, with one instance per row.
- * Here, 'Gateway' means that it enables the user to interact with the SQL database without directly using SQL language.
+ * This acts as a 'gateway' to a single record in a database, with one instance per row.
+ * Here, 'gateway' means that it enables the user to interact with the SQL database without directly using SQL language.
  *
  * <p>In this example, I use the row data gateway pattern to access a rowData table.
  * The main method initialises an instance of {@link RowDataGateway}

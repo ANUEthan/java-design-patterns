@@ -1,5 +1,8 @@
 ---
+layout: pattern
 title: Row Data Gateway
+folder: row-data-gateway
+permalink: /patterns/row-data-gateway/
 category: Structural
 language: en
 tags:
@@ -11,77 +14,85 @@ tags:
 
 ## Intent
 
-Acts a Gateway to a single record in a database. One instance per row. Contains no domain logic.
+Acts a gateway to a single record in a database. One instance per row. Contains no domain logic.
 
 ## Explanation
 
 Real-world example
 
-> Consider your company wants to reduce their reliance on SQL-literate employees
-> To achieve this, they create a Row Data Gateway within their software
-> This allows for ordinary employees to interact with SQL without knowing SQL-specific language
+> Consider your company wants to reduce their reliance on SQL-literate employees.
+> To achieve this, they create a Row Data Gateway within their software.
+> This allows for ordinary employees to interact with SQL without knowing SQL-specific language.
 
 In Plain Words
 
-> Row Data Gateway is about accessing a row in a Database without the user having to directly use SQL.
+> Row Data Gateway is about accessing a row in a database without the user having to directly use SQL.
 
 **Programmatic Example**
 
 A Row Data Gateway acts as an object that mimics a single record, i.e. a single row of a database.
-In my example, 'rowData' class has id, Name and Value fields.
+In my example, `rowData` class has `id`, `Name` and `Value` fields.
 
-The `rowData` class:
+The `RowData` class:
 ```java
-public class rowData {
-    private int id;
-    private String name;
-    private int value;
+public class RowData {
+  private int id;
+  private String name;
+  private int value;
 
-    /**
-     * Public constructor
-     * @param i int
-     * ^^^ this is the ID of the row, should always be present
-     * the following data types and the number of them should vary depending on the Columns of the SQL Table
-     * @param s String
-     * @param i1 int
-     */
-    public rowData(int i, String s, int i1) {
-        this.id=i;
-        this.name=s;
-        this.value=i1;
-    }
-    /**
-     * Gets current name of the rowData
-     */
-    public String getName() {
-        return name;
-    }
+  /**
+   * Public constructor.
+   * i is the ID of the row, should always be present.
+   * the following data types and the number of them should vary depending on the Columns of the SQL Table.
+   * @param i int
+   * @param s String
+   * @param i1 int
+   */
+  public RowData(int i, String s, int i1) {
+    this.id = i;
+    this.name = s;
+    this.value = i1;
+  }
+  /**
+   * Gets current name of the rowData.
+   */
+  public String getName() {
+    return name;
+  }
 
-    /**
-     * Sets current name of the rowData
-     * @param name String
-     */
-    public void setName(String name) { this.name = name; }
-    /**
-     * Gets current Value of the rowData
-     */
-    public int getValue() {
-        return value;
-    }
-    /**
-     * Sets current value of the rowData
-     * @param value int
-     */
-    public void setValue(int value) { this.value = value; }
-    /**
-     * Gets current ID of the rowData
-     */
-    public int getID() { return id; }
-    /**
-     * Sets current ID of the rowData
-     * @param id int
-     */
-    public void setID(int id) { this.id = id; }
+  /**
+   * Sets current name of the rowData.
+   * @param name String
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+  /**
+   * Gets current Value of the rowData.
+   */
+  public int getValue() {
+    return value;
+  }
+  /**
+   * Sets current value of the rowData.
+   * @param value int
+   */
+  public void setValue(int value) {
+    this.value = value;
+  }
+  /**
+   * Gets current ID of the rowData.
+   */
+  public int getID() {
+    return id;
+  }
+  /**
+   * Sets current ID of the rowData.
+   * @param id int
+   */
+  public void setID(int id) {
+    this.id = id;
+  }
 }
 ```
 
@@ -89,128 +100,148 @@ The features in the above class correlate to the features of the column of the t
 This class holds the data about a row so that a client can access the Row Data Gateway directly.
 The gateway acts as an interface for each row of data in the database.
 
-The `rowDataGateway` class:
+The `RowDataGateway` class:
 ```java
-public class rowDataGateway {
-    /**
-     * Variables to store the URL and rowData
-     */
-    private rowData rowdata;
-    private final String urlDB;
-    public static Connection c = null;
+public class RowDataGateway {
+  /**
+   * Variables to store the URL and rowData.
+   */
+  private RowData rowdata;
+  private final String urlDB;
+  public static Connection c = null;
 
-    /**
-     * Public constructor
-     * @param rowdata rowData
-     * @param urlDB String
-     */
-    public rowDataGateway(rowData rowdata, String urlDB) {
-        this.rowdata = rowdata;
-        this.urlDB = urlDB;
-    }
+  /**
+   * Public constructor.
+   * @param rowdata rowData
+   * @param urlDB String
+   */
+  public RowDataGateway(RowData rowdata, String urlDB) {
+    this.rowdata = rowdata;
+    this.urlDB = urlDB;
+  }
 
-    /**
-     * Method to get current rowData
-     */
-    public rowData getRowData() {
-        return rowdata;
-    }
-    /**
-     * Method to set the current rowData, useful when preparing for Update for example.
-     * @param rowData rowData
-     */
-    public void setRowData(rowData rowData) { this.rowdata = rowData; }
+  /**
+   * Method to get current rowData.
+   */
+  public RowData getRowData() {
+    return rowdata;
+  }
+  /**
+   * Method to set the current rowData, useful when preparing for Update for example.
+   * @param rowData rowData
+   */
+  public void setRowData(RowData rowData) {
+    this.rowdata = rowData;
+  }
 
-    /**
-     * Insert part of the Data Pattern
-     * Purpose is to insert the current rowData in scope into the SQL table!
-     */
-    public void insert() {
-        ...
-    }
-    /**
-     * Update part of the Data Pattern
-     * Purpose is to update the row with matching ID to the new rowData
-     */
-    public void update(){
-        ...
-    }
-    /**
-     * Delete part of the Data Pattern
-     * Purpose is to update the row with matching ID to the new rowData
-     */
-    public void delete() {
-        ...
-    }    
+  /**
+   * Insert part of the Data Pattern.
+   * Purpose is to insert the current rowData in scope into the SQL table.
+   */
+  public void insert() {
+      ...
+  }
+  /**
+   * Update part of the Data Pattern.
+   * Purpose is to update the row with matching ID to the new rowData.
+   */
+  public void update() {
+    ...
+  }
+  /**
+   * Delete part of the Data Pattern.
+   * Purpose is to update the row with matching ID to the new rowData.
+   */
+  public void delete() {
+    ...
+  }
 }
+
 ```
-The App class acts as the external software implementing this design pattern, and shows how to insert, update and delete.
+The `App` class acts as the external software implementing this design pattern, and shows how to insert, update and delete.
 The `App` class:
 ```java
-import java.sql.*;
+package com.iluwatar.rowdatagateway;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ * This acts as a 'gateway' to a single record in a database, with one instance per row.
+ * Here, 'gateway' means that it enables the user to interact with the SQL database without directly using SQL language.
+ *
+ * <p>In this example, I use the row data gateway pattern to access a rowData table.
+ * The main method initialises an instance of {@link RowDataGateway}
+ * for each row, allowing access and interactions with each row in the database
+ * through Insert, Update and Delete methods in {@link RowDataGateway}</p>
+ */
 public class App {
-    /**
-     * The URL that determines the database to connect to. In this example code, this is SQLLite's test database.
-     */
-    private static final String urlDB = "jdbc:sqlite:test.db";
-    /**
-     * Private, empty constructor
-     */
-    private App() {
-    }
-    /**
-     * Starting point for the program
-     * @param args command line args
-     * @throws  SQLException if any error occur, since SQL code is necessary in  {@link rowDataGateway}
-     */
-    public static void main(String[] args) throws SQLException {
-        //starting method to create a the table rowData and establish a connection to the database.
-        initialize();
+  /**
+   * The URL that determines the database to connect to. In this example code, this is SQLLite's test database.
+   */
+  private static final String urlDB = "jdbc:sqlite:test.db";
+  /**
+   * Private, empty constructor.
+   */
+  private App() {
+  }
+  /**
+   * Starting point for the program.
+   * @param args command line args
+   * @throws  SQLException if any error occur, since SQL code is necessary in  {@link RowDataGateway}
+   */
+  public static void main(String[] args) throws SQLException {
+    //starting method to create a the table rowData and establish a connection to the database.
+    initialize();
 
-        //create three rowData objects and create three rowDataGateways to access the database.
-        rowData row1 = new rowData(1,"John",20);
-        rowData row2 = new rowData(2,"Mary",30);
-        rowData row3 = new rowData(3,"Doe",40);
+    //create three rowData objects and create three rowDataGateways to access the database.
+    RowData row1 = new RowData(1,"John",20);
+    RowData row2 = new RowData(2,"Mary",30);
+    RowData row3 = new RowData(3,"Doe",40);
 
-        rowDataGateway rowGateway1 = new rowDataGateway(row1,urlDB);
-        rowDataGateway rowGateway2 = new rowDataGateway(row2,urlDB);
-        rowDataGateway rowGateway3 = new rowDataGateway(row3,urlDB);
+    RowDataGateway rowGateway1 = new RowDataGateway(row1,urlDB);
+    RowDataGateway rowGateway2 = new RowDataGateway(row2,urlDB);
+    RowDataGateway rowGateway3 = new RowDataGateway(row3,urlDB);
 
-        rowGateway1.insert();
-        rowGateway2.insert();
-        rowGateway3.insert();
-        display();
-        row3.setName("Dobothy");
-        rowGateway3.setRowData(row3);
-        rowGateway3.update();
-        display();
-        rowGateway2.delete();
-        display();
-        //clear table and reset the database, ending the connection also.
-        clearAll();
-    }
-    /**
-     * Initializes the connection to the database and creates table to interact with in this example.
-     */
-    public static void initialize() {
-        ...
-    }
-    /**
-     * Deletes the table and ends the connection to the database.
-     */
-    public static void clearAll() {
-        ...
-    }
+    rowGateway1.insert();
+    rowGateway2.insert();
+    rowGateway3.insert();
+    display();
+    row3.setName("Dobothy");
+    rowGateway3.setRowData(row3);
+    rowGateway3.update();
+    display();
+    rowGateway2.delete();
+    display();
+    //clear table and reset the database, ending the connection also.
+    clearAll();
+  }
+  /**
+   * Initializes the connection to the database and creates table to interact with in this example.
+  */
+  public static void initialize() {
+    ...
+  }
+  /**
+   * Deletes the table and ends the connection to the database.
+  */
+  public static void clearAll() {
+    ...
+  }
 
-    /**
-     * Prints the database row-by-row to the terminal, useful in testing and understanding the code!
-     */
-    public static void display() {
-        ...
-    }
+  /**
+   * Prints the database row-by-row to the terminal, useful in testing and understanding the code.
+  */
+  public static void display() {
+    ...
+  }
 }
+
 ```
-Here's the console output. You can see the three calls of display() printed. Display is not necessary for the Pattern,
+Here's the console output. You can see the three calls of `display()` printed. Display is not necessary for the Pattern,
 but it is useful to help understand the process.
 
 ```
@@ -259,7 +290,8 @@ Process finished with exit code 0
 
 ## Applicability
 
-Row Data Gateway is often used with the Transaction Script pattern. In this case, it factors out the database access code and allows easy reuse by different Transaction Scripts.
+Row Data Gateway is often used with a transaction script pattern, or has more features added to make it an Active Record.
+All of which are used widely when interfacing with a database or other datasource.
 
 ## Related patterns
 
