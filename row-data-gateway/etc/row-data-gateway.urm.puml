@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.rowdatagateway {
   class App {
+    - logger : Logger {static}
     - urlDB : String {static}
     - App()
     + clearAll() {static}
@@ -12,7 +13,7 @@ package com.iluwatar.rowdatagateway {
     - id : int
     - name : String
     - value : int
-    + RowData(i : int, s : String, i1 : int)
+    + RowData(id : int, name : String, value : int)
     + getID() : int
     + getName() : String
     + getValue() : int
@@ -22,6 +23,7 @@ package com.iluwatar.rowdatagateway {
   }
   class RowDataGateway {
     + c : Connection {static}
+    - logger : Logger {static}
     - rowdata : RowData
     - urlDB : String
     + RowDataGateway(rowdata : RowData, urlDB : String)

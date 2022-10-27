@@ -1,3 +1,27 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.rowdatagateway;
 
 import java.sql.Connection;
@@ -5,6 +29,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This acts as a 'gateway' to a single record in a database, with one instance per row.
@@ -16,6 +42,10 @@ import java.sql.Statement;
  * through Insert, Update and Delete methods in {@link RowDataGateway}</p>
  */
 public class App {
+  /**
+   * Logger.
+   */
+  private static final Logger logger = LoggerFactory.getLogger(App.class);
   /**
    * The URL that determines the database to connect to. In this example code, this is SQLLite's test database.
    */
@@ -71,7 +101,7 @@ public class App {
       stmt.close();
       c.close();
     } catch (Exception e) {
-      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      logger.info(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
   }
@@ -90,7 +120,7 @@ public class App {
       stmt.close();
       c.close();
     } catch (Exception e) {
-      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      logger.info(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
   }
@@ -112,17 +142,13 @@ public class App {
         int id = rs.getInt("id");
         String  name = rs.getString("name");
         int value  = rs.getInt("value");
-
-        System.out.println("ID = " + id);
-        System.out.println("NAME = " + name);
-        System.out.println("VALUE = " + value);
-        System.out.println();
+        logger.info("\nID = " + id + "\nNAME = " + name + "\nVALUE = " + value);
       }
       rs.close();
       stmt.close();
       c.close();
     } catch (Exception e) {
-      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+      logger.info(e.getClass().getName() + ": " + e.getMessage());
       System.exit(0);
     }
   }

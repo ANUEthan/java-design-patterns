@@ -44,14 +44,14 @@ public class RowData {
    * Public constructor.
    * i is the ID of the row, should always be present.
    * the following data types and the number of them should vary depending on the Columns of the SQL Table.
-   * @param i int
-   * @param s String
-   * @param i1 int
+   * @param id: id of the row
+   * @param name: name of the row 
+   * @param value: value of the row
    */
-  public RowData(int i, String s, int i1) {
-    this.id = i;
-    this.name = s;
-    this.value = i1;
+  public RowData(int id, String name, int value) {
+    this.id = id;
+    this.name = name;
+    this.value = value;
   }
   /**
    * Gets current name of the rowData.
@@ -103,6 +103,10 @@ The gateway acts as an interface for each row of data in the database.
 The `RowDataGateway` class:
 ```java
 public class RowDataGateway {
+  /**
+   * Logger.
+   */
+  private static final Logger logger = LoggerFactory.getLogger(RowDataGateway.class);
   /**
    * Variables to store the URL and rowData.
    */
@@ -179,6 +183,10 @@ import java.sql.Statement;
  * through Insert, Update and Delete methods in {@link RowDataGateway}</p>
  */
 public class App {
+  /**
+   * Logger.
+   */
+  private static final Logger logger = LoggerFactory.getLogger(App.class);
   /**
    * The URL that determines the database to connect to. In this example code, this is SQLLite's test database.
    */
