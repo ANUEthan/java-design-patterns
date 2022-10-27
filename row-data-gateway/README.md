@@ -255,7 +255,7 @@ Process finished with exit code 0
 
 ## Class diagram
 
-![alt text](./etc/rowDataGateway.urm.png "Row Data Gateway class diagram")
+![alt text](./etc/RowDataGateway.png "Row Data Gateway class diagram")
 
 ## Applicability
 
