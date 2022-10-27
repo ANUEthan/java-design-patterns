@@ -1,0 +1,38 @@
+@startuml
+package com.iluwatar.rowdatagateway {
+  class App {
+    - logger : Logger {static}
+    - urlDB : String {static}
+    - App()
+    + clearAll() {static}
+    + display() {static}
+    + initialize() {static}
+    + main(args : String[]) {static}
+  }
+  class RowData {
+    - id : int
+    - name : String
+    - value : int
+    + RowData(id : int, name : String, value : int)
+    + getID() : int
+    + getName() : String
+    + getValue() : int
+    + setID(id : int)
+    + setName(name : String)
+    + setValue(value : int)
+  }
+  class RowDataGateway {
+    + c : Connection {static}
+    - logger : Logger {static}
+    - rowdata : RowData
+    - urlDB : String
+    + RowDataGateway(rowdata : RowData, urlDB : String)
+    + delete()
+    + getRowData() : RowData
+    + insert()
+    + setRowData(rowData : RowData)
+    + update()
+  }
+}
+RowDataGateway -->  "-rowdata" RowData
+@enduml
